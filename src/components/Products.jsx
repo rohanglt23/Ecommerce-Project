@@ -39,11 +39,11 @@ function Products() {
 
                             <div id="product-info">
                                 <h2>
-                                    <span id="dolar-span">$</span>
+                                    <span id="dolar-span">₹</span>
                                     {eachProduct.price}
                                 </h2>
 
-                                <PiShoppingCart id="shopping-cart" onClick={() => dispatch(add(eachProduct))} /> {/* sepete ekleme işlemi */}
+                                <PiShoppingCart id="shopping-cart" onClick={() => dispatch(add(eachProduct))} />
                             </div>
                         </div>
                     );

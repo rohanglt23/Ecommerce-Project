@@ -1,5 +1,6 @@
 import React from "react";
 import HeroImg from "../../assets/hero.png";
+// import dhaarmik from "../../assets/dhaarmik.png";
 
 import "../styles/Hero.css";
 

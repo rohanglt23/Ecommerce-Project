@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import ProductsData from "./../../ProductData"
 
 const initialState = {
     loading: false,
@@ -7,12 +8,12 @@ const initialState = {
     error: ""
 }
 
-export const getProducts = createAsyncThunk("getProducts", async () => {
-    const response = await axios.get("https://dummyjson.com/products");
-    // console.log(response);
-    // console.log(response.data);
-    // console.log(response.data.products); // Returns a 20-element array where each element is an object.
-    return response.data.products;
+export const getProducts = createAsyncThunk("getProducts", () => {
+    // const response = require('./../../products.json')
+    // // console.log(response);
+    // // console.log(response.data);
+    // // console.log(response.data.products); // Returns a 20-element array where each element is an object.
+    return ProductsData.products;
 })
 
 export const productsSlice = createSlice({

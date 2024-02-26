@@ -26,7 +26,7 @@ function SingleProduct(props) {
 
                 <div id="price-container">
                     <h2 id="price">
-                        <span>$</span>
+                        <span>₹</span>
                         {props.productDetails.price}
                     </h2>
                 </div>

@@ -23,7 +23,8 @@
 
 #product-head>img {
     width: 11rem;
-    height: 7rem;
+    height: 10rem;
+    zoom: 10px;
     border-radius: 10px;
     box-shadow: 0 3px 0 #9d174d;
     margin-bottom: 1.5rem;

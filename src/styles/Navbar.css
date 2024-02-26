@@ -1,5 +1,5 @@
 #navbar-container {
-    background-color: #252B48;
+    background-color: #f56218;
     position: fixed;
     top: 0;
     left: 0;
@@ -12,6 +12,11 @@
     color: white;
     font-size: 2.5rem;
     padding: 0.4rem 1.8rem;
+}
+
+#navbar-container>#icon>#icon-in-div {
+    border-radius: 50%;
+    width: 3.5rem;
 }
 
 #navbar-container>#icon>#icon-in-div:hover {

@@ -56,7 +56,7 @@ function ShoppingCart() {
               </div>
 
               <div id="price">
-                <span id="dolar-span">$</span>
+                <span id="dolar-span">₹</span>
                 <span id="price-span">{eachProduct.price * eachProduct.quantity}</span>
                 <span
                   id="trash-icon"
@@ -71,7 +71,7 @@ function ShoppingCart() {
 
           <div id="total-price-div">
             <span id="left">Total Price: </span>
-            <span id="dolar">$</span>
+            <span id="dolar">₹</span>
             <span id="right">{calculateTotalPrice()}</span>
           </div>
         </>
