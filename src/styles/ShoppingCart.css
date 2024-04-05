@@ -5,7 +5,7 @@
 #single-cart-container {
     display: flex;
 
-    /* to center the div */
+    
     width: 60%;
     margin-left: 20%;
 
@@ -119,6 +119,12 @@
 
 #total-price-div>#dolar {
     color: #9d174d;
+}
+
+.checkout-btn {
+    display: flex;
+    width: 100%;
+    justify-content: center;
 }
 
 @media (max-width: 1270px) {

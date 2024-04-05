@@ -19,7 +19,6 @@ function App() {
 
   const dispatch = useDispatch();
 
-  // Sayfa yüklendiğinde ürünler axios ile çekilecek.
   useEffect(() => {
     dispatch(getProducts());
   }, [dispatch])
@@ -36,7 +35,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={loading ? <Loading /> : <Products />} />
-        <Route path="/details/:id" element={<Details />} /> {/* "id" dinamik olarak değişeceği için ":" kullandık.  */}
+        <Route path="/details/:id" element={<Details />} /> 
         <Route path="/shoppingCart" element={<ShoppingCart />} />
       </Routes>
 

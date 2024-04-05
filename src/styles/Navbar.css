@@ -37,8 +37,7 @@
 }
 
 #navbar-container>#number-of-products {
-    /* navbarda başlangıç değeri 0 olan değişkeni tutuyor. */
-
+   
     position: absolute;
     top: 3.2rem;
     right: 1.6rem;

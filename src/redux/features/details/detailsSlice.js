@@ -8,7 +8,7 @@ function fetchFromLocalStorage() {
         return JSON.parse(value);
     }
     else {
-        return []; // empty array
+        return []; 
     }
 }
 
@@ -26,8 +26,7 @@ export const getDetails = createAsyncThunk("getDetails", async (id) => {
     console.log(id)
     let selectedProduct = ProductData?.products?.find(product => product.id == id)
     console.log(selectedProduct)
-    // console.log(response);
-    // console.log(response.data); // Returns an object
+  
     return selectedProduct;
 })
 
@@ -42,7 +41,7 @@ export const detailsSlice = createSlice({
 
         builder.addCase(getDetails.fulfilled, (state, action) => {
             state.loading = false;
-            state.value = action.payload; // api'den gelen verileri value'ya doldurma işlemi
+            state.value = action.payload; 
             storeInLocalStorage(state.value);
         })
 
