@@ -23,10 +23,13 @@ export const navbarSlice = createSlice({
     name: "navbar",
     initialState,
     reducers: {
+        clear: (state, action) => {
+            state.value = [];
+            storeInLocalStorage(state.value)
+        },
         add: (state, action) => {
             const existingProduct = state.value.find(eachProduct => eachProduct.id === action.payload.id);
 
-            // Eklemek istediğim ürün sepette mevcut ise
             if (existingProduct) {
                 existingProduct.quantity += 1; // Sepetteki adedini artır
                 // console.log(existingProduct.quantity, "quantity");
@@ -47,10 +50,8 @@ export const navbarSlice = createSlice({
         remove: (state, action) => {
             const index = state.value.findIndex(product => product.id === action.payload);
 
-            // Eğer bulunan indeks -1 değilse (yani ürün bulunduysa),
-            // bu, ürünün dizide bulunduğu anlamına gelir.
             if (index !== -1) {
-                state.value.splice(index, 1); // Sepetten bu indeksi kullanarak 1 öğeyi çıkarır.
+                state.value.splice(index, 1); 
 
                 storeInLocalStorage(state.value);
                 toast.success("Product is removed!");
@@ -62,7 +63,6 @@ export const navbarSlice = createSlice({
 
             if (index !== -1) {
                 if (state.value[index].quantity > 1) {
-                    // Ürünün adeti 1'den büyükse, adedini azalt
                     state.value[index].quantity -= 1;
 
                     storeInLocalStorage(state.value);
@@ -73,6 +73,6 @@ export const navbarSlice = createSlice({
     },
 });
 
-export const { add, remove, removeOne } = navbarSlice.actions;
+export const { add, remove, removeOne, clear } = navbarSlice.actions;
 
 export default navbarSlice.reducer;

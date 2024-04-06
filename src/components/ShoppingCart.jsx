@@ -1,20 +1,51 @@
-import React from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ZeroProduct from "./ZeroProduct.jsx";
 import { FaTrashAlt } from "react-icons/fa";
-import { add, remove, removeOne } from "../redux/features/navbar/navbarSlice";
+import { add, remove, removeOne, clear } from "../redux/features/navbar/navbarSlice";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast";
 
 import "../styles/ShoppingCart.css";
 
 function ShoppingCart() {
   const productsInShoppingCart = useSelector((state) => state.navbarReducer.value); // productsInShoppingCart is an array
 
-  // Sepetteki ürünlerin fiyatlarının toplamını hesaplama
+  let shoppingCartDetails = useMemo(() => {
+    return productsInShoppingCart.map(product => ({
+      reference_id: product.id,
+      description: `${product.quantity}x ${product.brand} - ${product.title}`,
+      amount: {
+        value: +((product.price * product.quantity)/80).toFixed(2)
+      }
+    }))
+  }, [ productsInShoppingCart ])
+
+  useEffect(() => {
+    if (shoppingCartDetails?.length) {
+      window.paypal.Buttons({
+        createOrder: (data,actions,err) => {
+          return actions.order.create({
+            intent: "CAPTURE",
+            purchase_units: shoppingCartDetails
+          })
+        },
+        onApprove: async (data, actions) => {
+          const order = await actions.order.capture();
+          if (order) {
+            navigate("/");
+            dispatch(clear());
+            toast.success("Order Placed Successfully!")
+          }
+        },
+      }).render("#paypal-btn")
+    }
+  },[shoppingCartDetails])
+ 
   function calculateTotalPrice() {
     let totalPrice = 0;
     for (let i = 0; i < productsInShoppingCart.length; i++) {
-      totalPrice += productsInShoppingCart[i].price * productsInShoppingCart[i].quantity; // Her ürünü adedi ile çarparak toplam fiyatı hesaplama
+      totalPrice += productsInShoppingCart[i].price * productsInShoppingCart[i].quantity; 
     }
     return totalPrice;
   }
@@ -73,6 +104,9 @@ function ShoppingCart() {
             <span id="left">Total Price: </span>
             <span id="dolar">₹</span>
             <span id="right">{calculateTotalPrice()}</span>
+          </div>
+          <div className="checkout-btn">
+            <div id="paypal-btn"></div>
           </div>
         </>
       )}
